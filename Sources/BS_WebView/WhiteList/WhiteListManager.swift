@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 
+// TODO: ホワイトリスト機能
 //class WhiteListManager {
 //    static let shared = WhiteListManager()
 //    private var list: [String] = []
