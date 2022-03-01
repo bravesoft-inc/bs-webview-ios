@@ -27,12 +27,12 @@ public struct WebViewRepresentable: UIViewRepresentable {
     }
     
     public func updateUIView(_ webView: WKWebView, context: Context) {
-//        guard WhiteListManager.shared.checkDomain(url) else {
-//            DispatchQueue.main.async {
-//                self.statusCode = 404
-//            }
-//            return
-//        }
+        //        guard WhiteListManager.shared.checkDomain(url) else {
+        //            DispatchQueue.main.async {
+        //                self.statusCode = 404
+        //            }
+        //            return
+        //        }
         
         webView.load(URLRequest(url: url))
     }
@@ -74,10 +74,10 @@ extension WebViewRepresentable {
                 return
             }
             
-//            guard WhiteListManager.shared.checkDomain(url) else {
-//                decisionHandler(.cancel)
-//                return
-//            }
+            //            guard WhiteListManager.shared.checkDomain(url) else {
+            //                decisionHandler(.cancel)
+            //                return
+            //            }
             
             decisionHandler(.allow)
         }
@@ -94,19 +94,19 @@ extension WebViewRepresentable {
             decisionHandler(.allow)
         }
         
-        public func webView(
-            _ webView: WKWebView,
-            createWebViewWith configuration: WKWebViewConfiguration,
-            for navigationAction: WKNavigationAction,
-            windowFeatures: WKWindowFeatures
-        ) -> WKWebView? {
-            if navigationAction.targetFrame == nil {
-                let request = navigationAction.request
-                webView.load(request)
-            }
-            
-            return nil
-        }
+        //        public func webView(
+        //            _ webView: WKWebView,
+        //            createWebViewWith configuration: WKWebViewConfiguration,
+        //            for navigationAction: WKNavigationAction,
+        //            windowFeatures: WKWindowFeatures
+        //        ) -> WKWebView? {
+        //            if navigationAction.targetFrame == nil {
+        //                let request = navigationAction.request
+        //                webView.load(request)
+        //            }
+        //
+        //            return nil
+        //        }
         
         public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
             scrollView.pinchGestureRecognizer?.isEnabled = false
