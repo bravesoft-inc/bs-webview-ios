@@ -12,37 +12,23 @@ public struct WebView<Content: View>: View {
     @State var action: Action = .none
     private let url: URL
     var backButton: Content
-//    var reloadButton: Content
-//    var forwardButton: Content
+    var reloadButton: Content
+    var forwardButton: Content
     
     public init(
         statusCode: Binding<Int>,
         url: URL,
-        @ViewBuilder backButton: () -> Content
+        @ViewBuilder backButton: () -> Content,
+        @ViewBuilder reloadButton: () -> Content,
+        @ViewBuilder forwardButton: () -> Content
     ) {
         self._statusCode = statusCode
         self.url = url
         self.backButton = backButton()
+        self.reloadButton = reloadButton()
+        self.forwardButton = forwardButton()
     }
-    
-//    public init(
-//        url: URL,
-//        statusCode: Binding<Int>,
-//        @ViewBuilder backButtonIcon: () -> Content,
-//        @ViewBuilder reloadButton: () -> Content,
-//        @ViewBuilder goForwardButton: () -> Content
-//    ) {
-//        self.url = url
-//        self._statusCode = statusCode
-//        self.action = action
-//        self.backButtonIcon = backButtonIcon()
-//        self.reloadButton = reloadButton()
-//        self.goForwardButton = goForwardButton()
-//        self.goBackButton = goBackButton()
-//        self.reloadButton = reloadButton()
-//        self.goForwardButton = goForwardButton()
-//    }
-    
+
     public var body: some View {
         VStack(alignment: .center, spacing: 0) {
             WebViewRepresentable(
@@ -55,23 +41,20 @@ public struct WebView<Content: View>: View {
                 Button(action: { action = .goBack }) {
                     backButton
                 }
+                
+                Spacer()
+                
+                Button(action: { action = .reload }) {
+                    reloadButton
+                }
+                
+                Spacer()
+                
+                Button(action: { action = .goForward }) {
+                    forwardButton
+                }
             }
-            
-//            ToolBarView(
-//                action: $action,
-//                goBackButton: {
-//                    goBackButton
-//                  Image(systemName: "arrow.backward.circle.fill")
-//                        .font(.system(size: 28))
-//                },
-//                reloadButton: {
-//                    Image(systemName: "doc.circle")
-//                        .font(.system(size: 28))
-//                },
-//                goForwardButton: {
-//                    Image(systemName: "arrow.forward.circle.fill")
-//                        .font(.system(size: 28))
-//                })
+            .padding()
         }
     }
 }
