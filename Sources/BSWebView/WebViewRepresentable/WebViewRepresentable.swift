@@ -26,9 +26,9 @@ public struct WebViewRepresentable: UIViewRepresentable {
     public func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.load(URLRequest(url: url))
-        webView.uiDelegate = context.coordinator
-        webView.navigationDelegate = context.coordinator
-        webView.scrollView.delegate = context.coordinator
+//        webView.uiDelegate = context.coordinator
+//        webView.navigationDelegate = context.coordinator
+//        webView.scrollView.delegate = context.coordinator
         
         return webView
     }
