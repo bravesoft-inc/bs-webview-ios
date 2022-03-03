@@ -7,19 +7,41 @@
 
 import SwiftUI
 
-public struct WebView: View {
-    private let url: URL
+public struct WebView<Content: View>: View {
     @Binding var statusCode: Int
     @State var action: Action = .none
+    private let url: URL
+    var backButton: Content
+//    var reloadButton: Content
+//    var forwardButton: Content
     
     public init(
+        statusCode: Binding<Int>,
         url: URL,
-        statusCode: Binding<Int>
+        @ViewBuilder backButton: () -> Content
     ) {
-        self.url = url
         self._statusCode = statusCode
-        self.action = action
+        self.url = url
+        self.backButton = backButton()
     }
+    
+//    public init(
+//        url: URL,
+//        statusCode: Binding<Int>,
+//        @ViewBuilder backButtonIcon: () -> Content,
+//        @ViewBuilder reloadButton: () -> Content,
+//        @ViewBuilder goForwardButton: () -> Content
+//    ) {
+//        self.url = url
+//        self._statusCode = statusCode
+//        self.action = action
+//        self.backButtonIcon = backButtonIcon()
+//        self.reloadButton = reloadButton()
+//        self.goForwardButton = goForwardButton()
+//        self.goBackButton = goBackButton()
+//        self.reloadButton = reloadButton()
+//        self.goForwardButton = goForwardButton()
+//    }
     
     public var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -28,7 +50,28 @@ public struct WebView: View {
                 statusCode: $statusCode,
                 action: $action
             )
-            ToolBarView(action: $action)
+            
+            HStack(alignment: .center, spacing: 0) {
+                Button(action: { action = .goBack }) {
+                    backButton
+                }
+            }
+            
+//            ToolBarView(
+//                action: $action,
+//                goBackButton: {
+//                    goBackButton
+//                  Image(systemName: "arrow.backward.circle.fill")
+//                        .font(.system(size: 28))
+//                },
+//                reloadButton: {
+//                    Image(systemName: "doc.circle")
+//                        .font(.system(size: 28))
+//                },
+//                goForwardButton: {
+//                    Image(systemName: "arrow.forward.circle.fill")
+//                        .font(.system(size: 28))
+//                })
         }
     }
 }

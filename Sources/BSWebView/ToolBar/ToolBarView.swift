@@ -7,28 +7,40 @@
 
 import SwiftUI
 
-struct ToolBarView: View {
+struct ToolBarView<Content: View>: View {
     @Binding var action: Action
+    var goBackButton: Content
+    var reloadButton: Content
+    var goForwardButton: Content
+    
+    init(
+        action: Binding<Action>,
+        @ViewBuilder goBackButton: () -> Content,
+        @ViewBuilder reloadButton: () -> Content,
+        @ViewBuilder goForwardButton: () -> Content
+    ) {
+        self._action = action
+        self.goBackButton = goBackButton()
+        self.reloadButton = reloadButton()
+        self.goForwardButton = goForwardButton()
+    }
     
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             Button(action: { action = .goBack }) {
-                Image(systemName: "arrow.backward.circle.fill")
-                    .font(.system(size: 32))
+                goBackButton
             }
             
             Spacer()
             
             Button(action: { action = .reload }) {
-                Image(systemName: "doc.circle")
-                    .font(.system(size: 32))
+                reloadButton
             }
             
             Spacer()
             
             Button(action: { action = .goForward }) {
-                Image(systemName: "arrow.forward.circle.fill")
-                    .font(.system(size: 32))
+                goForwardButton
             }
         }
         .padding(.horizontal)
