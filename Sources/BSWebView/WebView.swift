@@ -12,6 +12,15 @@ public struct WebView: View {
     @Binding var statusCode: Int
     @State var action: Action = .none
     
+    public init(
+        url: URL,
+        statusCode: Binding<Int>
+    ) {
+        self.url = url
+        self._statusCode = statusCode
+        self.action = action
+    }
+    
     public var body: some View {
         VStack(alignment: .center, spacing: 0) {
             WebViewRepresentable(url: url, statusCode: $statusCode)
