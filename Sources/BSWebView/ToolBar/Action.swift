@@ -5,7 +5,7 @@
 //  Created by 平石　太郎 on 2022/03/03.
 //
 
-enum Action {
+public enum Action {
     case goBack
     case goForward
     case reload

@@ -14,20 +14,24 @@ struct ToolBarView: View {
         HStack(alignment: .center, spacing: 0) {
             Button(action: { action = .goBack }) {
                 Image(systemName: "arrow.backward.circle.fill")
+                    .font(.system(size: 32))
             }
             
             Spacer()
             
             Button(action: { action = .reload }) {
                 Image(systemName: "doc.circle")
+                    .font(.system(size: 32))
             }
             
             Spacer()
             
             Button(action: { action = .goForward }) {
                 Image(systemName: "arrow.forward.circle.fill")
+                    .font(.system(size: 32))
             }
         }
+        .padding(.horizontal)
     }
 }
 

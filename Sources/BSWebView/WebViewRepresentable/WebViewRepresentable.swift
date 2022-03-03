@@ -11,10 +11,16 @@ import WebKit
 public struct WebViewRepresentable: UIViewRepresentable {
     let url: URL
     @Binding var statusCode: Int
+    @Binding var action: Action
     
-    public init(url: URL, statusCode: Binding<Int>) {
+    public init(
+        url: URL,
+        statusCode: Binding<Int>,
+        action: Binding<Action>
+    ) {
         self.url = url
         self._statusCode = statusCode
+        self._action = action
     }
     
     public func makeUIView(context: Context) -> WKWebView {
@@ -28,6 +34,16 @@ public struct WebViewRepresentable: UIViewRepresentable {
     }
     
     public func updateUIView(_ webView: WKWebView, context: Context) {
+        switch action {
+        case .goBack:
+            webView.goBack()
+        case .goForward:
+            webView.goForward()
+        case .reload:
+            webView.reload()
+        case .none:
+            break
+        }
     }
     
     public func makeCoordinator() -> Coordinator {

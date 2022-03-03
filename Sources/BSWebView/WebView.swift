@@ -23,7 +23,11 @@ public struct WebView: View {
     
     public var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            WebViewRepresentable(url: url, statusCode: $statusCode)
+            WebViewRepresentable(
+                url: url,
+                statusCode: $statusCode,
+                action: $action
+            )
             ToolBarView(action: $action)
         }
     }
