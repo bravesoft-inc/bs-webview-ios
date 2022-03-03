@@ -24,7 +24,7 @@ let package = Package(
             name: "BSWebView",
             dependencies: []),
         .testTarget(
-            name: "BS_WebViewTests",
+            name: "BSWebViewTests",
             dependencies: ["BSWebView"]),
     ]
 )
