@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct WebView: View {
+public struct WebView: View {
     private let url: URL
     @Binding var statusCode: Int
     @State var action: Action = .none
     
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .center, spacing: 0) {
             WebViewRepresentable(url: url, statusCode: $statusCode)
             ToolBarView(action: $action)
