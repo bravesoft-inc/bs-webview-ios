@@ -70,11 +70,7 @@ extension BSWebView {
             let statusCode: Int = response.statusCode
             parent.statusCodePublisher.send(statusCode)
 
-            if statusCode == 200 {
-                decisionHandler(.allow)
-            } else {
-                decisionHandler(.cancel)
-            }
+            decisionHandler(.allow)
         }
 
         public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation?) {
