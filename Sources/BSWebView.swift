@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  BSWebView.swift
 //  
 //
 //  Created by 平石　太郎 on 2022/03/01.
@@ -8,15 +8,15 @@
 import SwiftUI
 import WebKit
 
-struct BSWebView: UIViewRepresentable {
+public struct BSWebView: UIViewRepresentable {
     private var webView: WKWebView?
     private let request: URLRequest
-    private let onChangeStatusCode: ((Int) -> Void)?
+    @Binding var statusCode: Int?
     
-    public init(request: URLRequest, onChangeStatusCode: ((Int) -> Void)? = nil) {
+    public init(request: URLRequest, statusCode: Binding<Int?> = .constant(nil)) {
         self.webView = WKWebView()
         self.request = request
-        self.onChangeStatusCode = onChangeStatusCode
+        self._statusCode = statusCode
     }
     
     func makeCoordinator() -> Coordinator {
@@ -59,7 +59,7 @@ extension BSWebView {
         
         func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
             if let response = navigationResponse.response as? HTTPURLResponse {
-                parent.onChangeStatusCode(response.statusCode)
+                parent.statusCode = response.statusCode
             }
             webView.goBack()
             
