@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import BSWebView
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        //BSWebView(request: <#URLRequest#>)
+        Text("hoge")
     }
 }
 

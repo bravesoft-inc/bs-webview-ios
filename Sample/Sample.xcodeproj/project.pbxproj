@@ -11,6 +11,7 @@
 		29D9AB4127F19D13008CA6C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D9AB4027F19D13008CA6C4 /* ContentView.swift */; };
 		29D9AB4327F19D18008CA6C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29D9AB4227F19D18008CA6C4 /* Assets.xcassets */; };
 		29D9AB4627F19D18008CA6C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29D9AB4527F19D18008CA6C4 /* Preview Assets.xcassets */; };
+		29D9AB4E27F19D84008CA6C4 /* BSWebView in Frameworks */ = {isa = PBXBuildFile; productRef = 29D9AB4D27F19D84008CA6C4 /* BSWebView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29D9AB4E27F19D84008CA6C4 /* BSWebView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = Sample;
+			packageProductDependencies = (
+				29D9AB4D27F19D84008CA6C4 /* BSWebView */,
+			);
 			productName = Sample;
 			productReference = 29D9AB3B27F19D13008CA6C4 /* Sample.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,9 @@
 				Base,
 			);
 			mainGroup = 29D9AB3227F19D13008CA6C4;
+			packageReferences = (
+				29D9AB4C27F19D84008CA6C4 /* XCRemoteSwiftPackageReference "bs_webview" */,
+			);
 			productRefGroup = 29D9AB3C27F19D13008CA6C4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -341,6 +349,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		29D9AB4C27F19D84008CA6C4 /* XCRemoteSwiftPackageReference "bs_webview" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://gitlab.com/bs-libraries/bs_webview";
+			requirement = {
+				branch = "feature/support-target-blank";
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		29D9AB4D27F19D84008CA6C4 /* BSWebView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29D9AB4C27F19D84008CA6C4 /* XCRemoteSwiftPackageReference "bs_webview" */;
+			productName = BSWebView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 29D9AB3327F19D13008CA6C4 /* Project object */;
 }

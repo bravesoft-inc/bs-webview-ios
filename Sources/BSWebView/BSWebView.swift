@@ -19,6 +19,12 @@ public struct BSWebView: UIViewRepresentable {
     public var canGoBackPublisher: PassthroughSubject<Bool, Never> = .init()
     public var canGoForwardPublisher: PassthroughSubject<Bool, Never> = .init()
 
+    public init(url: URL, config: BSWebViewConfig = .default) {
+        self.webView = WKWebView()
+        self.request = URLRequest(url: url)
+        self.config = config
+    }
+    
     public init(request: URLRequest, config: BSWebViewConfig = .default) {
         self.webView = WKWebView()
         self.request = request
