@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
-import BSWebView
 
 struct ContentView: View {
     var body: some View {
-        //BSWebView(request: <#URLRequest#>)
-        Text("hoge")
+        NavigationView {
+            List {
+                NavigationLink(destination: {}) {
+                    Text("target=blankを外部ブラウザで開く")
+                }
+                NavigationLink(destination: {}) {
+                    Text("target=blankは内部遷移する")
+                }
+            }
+        }        
     }
 }
 

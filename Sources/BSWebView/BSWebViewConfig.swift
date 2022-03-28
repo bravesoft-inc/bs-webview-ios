@@ -14,7 +14,7 @@ public enum TargetBlankTappedType {
 }
 
 public struct BSWebViewConfig {
-    let targetBlankTappedType: TargetBlankTappedType
+    public let targetBlankTappedType: TargetBlankTappedType
     
     public static let `default`: BSWebViewConfig = BSWebViewConfig(
         targetBlankTappedType: .openInExternalBrowser
