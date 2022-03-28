@@ -9,9 +9,11 @@ import SwiftUI
 import BSWebView
 
 struct TargetBlankSafari: View {
+    private let config = BSWebViewConfig(targetBlankTappedType: .openInExternalBrowser)
+
     var body: some View {
         if let url = URL(string: "https://www.tagindex.com/html_tag/link/a_target.html") {
-            BSWebView(url: url)
+            BSWebView(url: url, config: config)
         } else {
             Text("Not Found")
         }

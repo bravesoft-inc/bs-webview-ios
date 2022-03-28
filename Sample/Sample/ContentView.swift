@@ -10,14 +10,19 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            List {
-                NavigationLink(destination: {}) {
-                    Text("target=blankを外部ブラウザで開く")
-                }
-                NavigationLink(destination: {}) {
-                    Text("target=blankは内部遷移する")
+            Form {
+                Section {
+                    NavigationLink(destination: TargetBlankSafari()) {
+                        Text("外部ブラウザで開く")
+                    }
+                    NavigationLink(destination: TargetBlankWebView()) {
+                        Text("内部遷移する")
+                    }
+                } header: {
+                    Text("target=blank")
                 }
             }
+            .navigationTitle("BSWebView")
         }        
     }
 }
