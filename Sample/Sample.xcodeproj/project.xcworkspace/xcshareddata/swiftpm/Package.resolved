@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BSWebView",
+        "repositoryURL": "https://gitlab.com/bs-libraries/bs_webview",
+        "state": {
+          "branch": "feature/support-target-blank",
+          "revision": "8a9526c9e167e17ba53dce62f95d0113f508b918",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

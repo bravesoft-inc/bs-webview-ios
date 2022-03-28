@@ -12,15 +12,23 @@ import WebKit
 public struct BSWebView: UIViewRepresentable {
     private var webView: WKWebView?
     private let request: URLRequest
+    private let config: BSWebViewConfig
     
     public var statusCodePublisher: PassthroughSubject<Int, Never> = .init()
     public var errorCodePublisher: PassthroughSubject<Int, Never> = .init()
     public var canGoBackPublisher: PassthroughSubject<Bool, Never> = .init()
     public var canGoForwardPublisher: PassthroughSubject<Bool, Never> = .init()
 
-    public init(request: URLRequest) {
+    public init(url: URL, config: BSWebViewConfig = .default) {
+        self.webView = WKWebView()
+        self.request = URLRequest(url: url)
+        self.config = config
+    }
+    
+    public init(request: URLRequest, config: BSWebViewConfig = .default) {
         self.webView = WKWebView()
         self.request = request
+        self.config = config
     }
 
     public func makeCoordinator() -> Coordinator {
@@ -73,6 +81,23 @@ extension BSWebView {
             decisionHandler(.allow)
         }
 
+        public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+            if navigationAction.targetFrame == nil {
+                switch parent.config.targetBlankTappedType {
+                case .openInExternalBrowser:
+                    if let url = navigationAction.request.url, UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                case .internalTransition:
+                    webView.load(navigationAction.request)
+                case .noop:
+                    break
+                }
+            }
+            
+            return nil
+        }
+        
         public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation?) {
             parent.canGoBackPublisher.send(webView.canGoBack)
             parent.canGoForwardPublisher.send(webView.canGoForward)
