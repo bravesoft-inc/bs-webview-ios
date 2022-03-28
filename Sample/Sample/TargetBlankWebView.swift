@@ -9,11 +9,8 @@ import SwiftUI
 import BSWebView
 
 struct TargetBlankWebView: View {
-    private lazy var config: BSWebViewConfig = {
-        let config = BSWebViewConfig(targetBlankTappedType: .openInExternalBrowser)
-        return config
-    }()
-    
+    private let config = BSWebViewConfig(targetBlankTappedType: .openInExternalBrowser)
+
     var body: some View {
         if let url = URL(string: "https://www.tagindex.com/html_tag/link/a_target.html") {
             BSWebView(url: url, config: config)
