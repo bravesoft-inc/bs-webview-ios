@@ -77,7 +77,6 @@ extension BSWebView {
             
             let statusCode: Int = response.statusCode
             parent.statusCodePublisher.send(statusCode)
-            parent.errorCodePublisher.send(.zero)
             
             decisionHandler(.allow)
         }
