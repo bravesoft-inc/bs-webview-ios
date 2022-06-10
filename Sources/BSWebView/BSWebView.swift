@@ -57,7 +57,11 @@ public struct BSWebView: UIViewRepresentable {
     }
 
     public func refresh() {
-        webView?.reload()
+        if webView?.url == nil {
+            webView?.load(request)
+        } else {
+            webView?.reload()
+        }
     }
 }
 
