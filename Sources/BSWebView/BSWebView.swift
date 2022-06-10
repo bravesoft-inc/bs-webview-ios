@@ -15,7 +15,7 @@ public struct BSWebView: UIViewRepresentable {
     private let config: BSWebViewConfig
     
     public var statusCodePublisher: PassthroughSubject<Int, Never> = .init()
-    public var errorCodePublisher: PassthroughSubject<Int, Never> = .init()
+    public var errorCodePublisher: PassthroughSubject<Int?, Never> = .init()
     public var canGoBackPublisher: PassthroughSubject<Bool, Never> = .init()
     public var canGoForwardPublisher: PassthroughSubject<Bool, Never> = .init()
 
@@ -77,6 +77,7 @@ extension BSWebView {
             
             let statusCode: Int = response.statusCode
             parent.statusCodePublisher.send(statusCode)
+            parent.errorCodePublisher.send(nil)
             
             decisionHandler(.allow)
         }
