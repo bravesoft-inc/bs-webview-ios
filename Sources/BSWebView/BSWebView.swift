@@ -59,13 +59,6 @@ public struct BSWebView: UIViewRepresentable {
 
     public func refresh() {
         webView?.reload()
-//        guard let webView = webView else { return }
-//
-//        if webView.url == nil {
-//            webView.load(request)
-//        } else {
-//            webView.reload()
-//        }
     }
 }
 
@@ -115,7 +108,7 @@ extension BSWebView {
         public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation?, withError error: Error) {
             let nsError = error as NSError
             parent.errorCodePublisher.send(nsError.code)
-            parent.statusCodePublisher.send(0)
+            parent.statusCodePublisher.send(.zero)
         }
         
         public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
