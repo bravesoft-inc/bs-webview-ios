@@ -74,10 +74,11 @@ extension BSWebView {
                 parent.statusCodePublisher.send(404)
                 return decisionHandler(.cancel)
             }
-
+            
             let statusCode: Int = response.statusCode
             parent.statusCodePublisher.send(statusCode)
-
+            parent.errorCodePublisher.send(.zero)
+            
             decisionHandler(.allow)
         }
 
@@ -106,9 +107,9 @@ extension BSWebView {
         public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation?, withError error: Error) {
             let nsError = error as NSError
             parent.errorCodePublisher.send(nsError.code)
-            parent.statusCodePublisher.send(0)
+            parent.statusCodePublisher.send(.zero)
         }
-
+        
         public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
             scrollView.pinchGestureRecognizer?.isEnabled = false
         }
