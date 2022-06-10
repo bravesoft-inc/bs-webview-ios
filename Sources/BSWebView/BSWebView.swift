@@ -11,8 +11,12 @@ import WebKit
 
 public struct BSWebView: UIViewRepresentable {
     private var webView: WKWebView?
-    private let request: URLRequest
+//    private let request: URLRequest
     private let config: BSWebViewConfig
+    private let url: URL
+    private var request: URLRequest {
+        URLRequest(url: url)
+    }
     
     public var statusCodePublisher: PassthroughSubject<Int, Never> = .init()
     public var errorCodePublisher: PassthroughSubject<Int, Never> = .init()
@@ -21,15 +25,16 @@ public struct BSWebView: UIViewRepresentable {
 
     public init(url: URL, config: BSWebViewConfig = .default) {
         self.webView = WKWebView()
-        self.request = URLRequest(url: url)
+        self.url = url
+//        self.request = URLRequest(url: url)
         self.config = config
     }
     
-    public init(request: URLRequest, config: BSWebViewConfig = .default) {
-        self.webView = WKWebView()
-        self.request = request
-        self.config = config
-    }
+//    public init(request: URLRequest, config: BSWebViewConfig = .default) {
+//        self.webView = WKWebView()
+//        self.request = request
+//        self.config = config
+//    }
 
     public func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -62,7 +67,8 @@ public struct BSWebView: UIViewRepresentable {
 //        } else {
 //            webView?.reload()
 //        }
-        webView?.load(request)
+//        webView?.load(request)
+        webView?.load(URLRequest(url: url))
     }
 }
 
