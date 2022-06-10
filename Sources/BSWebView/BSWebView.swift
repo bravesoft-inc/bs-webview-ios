@@ -58,14 +58,14 @@ public struct BSWebView: UIViewRepresentable {
     }
 
     public func refresh() {
-//        webView?.reload()
-        guard let webView = webView else { return }
-        
-        if webView.url == nil {
-            webView.load(request)
-        } else {
-            webView.reload()
-        }
+        webView?.reload()
+//        guard let webView = webView else { return }
+//        
+//        if webView.url == nil {
+//            webView.load(request)
+//        } else {
+//            webView.reload()
+//        }
     }
 }
 
@@ -85,7 +85,7 @@ extension BSWebView {
             
             let statusCode: Int = response.statusCode
             parent.statusCodePublisher.send(statusCode)
-//            parent.errorCodePublisher.send(0)
+            parent.errorCodePublisher.send(0)
             
             decisionHandler(.allow)
         }
