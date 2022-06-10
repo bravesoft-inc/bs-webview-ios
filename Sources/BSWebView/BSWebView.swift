@@ -13,7 +13,6 @@ public struct BSWebView: UIViewRepresentable {
     private var webView: WKWebView?
     private let request: URLRequest
     private let config: BSWebViewConfig
-
     
     public var statusCodePublisher: PassthroughSubject<Int, Never> = .init()
     public var errorCodePublisher: PassthroughSubject<Int, Never> = .init()
