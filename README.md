@@ -1,10 +1,9 @@
-## 機能一覧
-1. ホワイトリスト機能
+# BSWebView
+<img src="https://img.shields.io/badge/SPM-v0.1.6-blue.svg?logo=swift" />
+<img src="https://img.shields.io/badge/platform-iOS14-lightgrey.svg" />
 
-2. ステータスコードが200以上300未満の場合WebViewを表示する
+SwiftUIのWebViewを簡単に実装できるライブラリになります。
 
-3. ステータスコードが200番台以外の場合はエラーViewを表示する
-
-4. cacheをリセットする
-
-5. アプリ内部でもアプリ外部でもWebViewを表示できる
+## 注意事項
+このライブラリはBeta版になります。
+自己責任でご利用ください。
